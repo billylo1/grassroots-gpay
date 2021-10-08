@@ -1,0 +1,6 @@
+{
+    GCP_CREDENTIALS: 'key.json',
+    GOOGLE_PAY_ISSUER_ID: '3388000000018205867',
+    LOYALTY_PROGRAM: 'shc-receipt'
+    LOYALTY_WEBSITE: 'Vaccine-Ontario.ca'
+}
