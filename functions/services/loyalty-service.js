@@ -34,23 +34,31 @@ async function createLoyaltyObject(payloadBody, id, qrCodeMessage) {
   // read issuerId and loyalty program from config
   const { issuerId, loyaltyProgram } = config;
   const receipts = payloadBody.receipts;
-  const firstReceiptKey = Object.keys(receipts).sort()[0];
-  const firstReceipt = receipts[firstReceiptKey];
+  const firstReceipt = receipts['1'];
+  const secondReceipt = receipts['2'];
+  const firstReceiptDetails = firstReceipt ? `${firstReceipt.vaccineName} (${firstReceipt.vaccinationDate})` : '';
+  const secondReceiptDetails = secondReceipt ? `${secondReceipt.vaccineName} (${secondReceipt.vaccinationDate})` : '';
+  const receiptWithName = (firstReceipt ? firstReceipt : secondReceipt);
+  const numDoses = Object.keys(receipts).length;
+  const alternateText = `${receiptWithName.name} (${receiptWithName.dateOfBirth}) : ${numDoses} ${numDoses > 1 ? 'doses' : 'dose'}`;
+
+
   if (payloadBody.hasOwnProperty('rawData') && payloadBody.rawData.length > 0) {
     qrCodeMessage = payloadBody.rawData;      // shc:/
-    console.log(qrCodeMessage);
+    // console.log(qrCodeMessage);
   }
 
   // Step 1: Construct the loyaltyObject.
   const loyaltyObject = {
     id: getLoyaltyId(id),
     classId: `${issuerId}.${loyaltyProgram}`,
-    accountId: id,
-    accountName: firstReceipt.name,
+    accountName: `${firstReceiptDetails}`,
+    accountId: `${secondReceiptDetails}`,
     state: 'active',
     barcode: {
       type: 'qrCode',
       value: qrCodeMessage,
+      alternateText: `${alternateText}`
     },
 
   };
