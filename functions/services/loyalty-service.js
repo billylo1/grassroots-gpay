@@ -36,6 +36,10 @@ async function createLoyaltyObject(payloadBody, id, qrCodeMessage) {
   const receipts = payloadBody.receipts;
   const firstReceiptKey = Object.keys(receipts).sort()[0];
   const firstReceipt = receipts[firstReceiptKey];
+  if (payloadBody.hasOwnProperty('rawData') && payloadBody.rawData.length > 0) {
+    qrCodeMessage = payloadBody.rawData;      // shc:/
+    console.log(qrCodeMessage);
+  }
 
   // Step 1: Construct the loyaltyObject.
   const loyaltyObject = {
@@ -50,8 +54,6 @@ async function createLoyaltyObject(payloadBody, id, qrCodeMessage) {
     },
 
   };
-
-  console.log(JSON.stringify(loyaltyObject, null, 2));
 
   // Step 2: Insert the loyaltyObject.
   await client.postIfNotFound(
