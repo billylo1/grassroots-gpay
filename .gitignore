@@ -76,3 +76,7 @@ typings/
 .fusebox/
 key.json
 *.cache
+*.cache
+*.cache
+*.cache
+.DS_Store

@@ -19,7 +19,7 @@ const functions = require('firebase-functions');
 const firebaseConfig = Object.assign({ loyalty: {} }, functions.config());
 
 function getCredentials() {
-  let credentials = firebaseConfig.loyalty.credentials;
+  let credentials = firebaseConfig.credentials;
 
   if (!credentials) {
     const envCredentials = process.env.GCP_CREDENTIALS;
