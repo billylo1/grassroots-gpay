@@ -70,7 +70,7 @@ exports.googlesign = functions.https.onRequest((request, response) => {
         const passContents = {
             id: passId,
             issuerId: passIssuerId,
-            title: `COVID-19 Vaccination Card`,
+            title: `COVID-19 Vaccination Card, ${shcReceipt.cardOrigin}`,
             patientDetails: {
                 dateOfBirth: shcReceipt.dateOfBirth,
                 patientName: shcReceipt.name
