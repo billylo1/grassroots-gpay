@@ -70,7 +70,7 @@ exports.googlesign = functions.https.onRequest((request, response) => {
         const passContents = {
             id: passId,
             issuerId: passIssuerId,
-            title: `COVID-19 Vaccination Card, ${shcReceipt.cardOrigin}`,
+            title: `COVID-19 Vaccination Card`,
             patientDetails: {
                 dateOfBirth: shcReceipt.dateOfBirth,
                 patientName: shcReceipt.name
@@ -79,14 +79,13 @@ exports.googlesign = functions.https.onRequest((request, response) => {
                 vaccinationRecord: passVaccinationRecords
             },
             barcode: {
-                type: 'qrCode',
+                type: 'QR_CODE',
                 value: qrCode,
             },
             cardColorHex: '#FFFFFF',
             logo: {
                 sourceUri: {
-                    description: 'Grassroots',
-                    uri: 'https://www.gstatic.com/images/icons/material/system_gm/2x/gpp_good_black_48dp.png'
+                    uri: 'https://www.gstatic.com/images/icons/material/system_gm/2x/healing_black_48dp.png'
                 }
             },
         };
