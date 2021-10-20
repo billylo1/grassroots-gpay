@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 // Allow requests from *.vaccine-ontario.ca, and from the Google Cloud functions domain that this function runs on
 const cors = require('cors')({ origin: [/\.vaccine-ontario\.ca$/, "https://us-central1-grassroots-gpay.cloudfunctions.net"] });
+//const cors = require('cors')({ origin: true });
 
 exports.googlesign = functions.https.onRequest((request, response) => {
     /*
@@ -85,7 +86,6 @@ exports.googlesign = functions.https.onRequest((request, response) => {
             cardColorHex: '#FFFFFF',
             logo: {
                 sourceUri: {
-                    description: 'Grassroots',
                     uri: 'https://www.gstatic.com/images/icons/material/system_gm/2x/gpp_good_black_48dp.png'
                 }
             },
