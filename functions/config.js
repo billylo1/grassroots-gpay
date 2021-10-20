@@ -41,7 +41,8 @@ function getCredentials() {
 
 module.exports = {
   credentials: getCredentials(),
-  issuerId: firebaseConfig.loyalty.issuer_id || process.env.GOOGLE_PAY_ISSUER_ID,
+  issuerIdLoyalty: firebaseConfig.loyalty.issuer_id_loyalty || process.env.ISSUER_ID_LOYALTY,
+  issuerIdCovidcard: firebaseConfig.loyalty.issuer_id_covidcard || process.env.ISSUER_ID_COVIDCARD,
   website: firebaseConfig.loyalty.website || process.env.LOYALTY_WEBSITE,
   loyaltyProgram: firebaseConfig.loyalty.loyalty_program || process.env.LOYALTY_PROGRAM,
 };

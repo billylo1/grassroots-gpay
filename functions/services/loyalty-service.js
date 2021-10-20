@@ -18,8 +18,8 @@ const config = require('../config');
 const PassesClient = require('../passes-client');
 
 function getLoyaltyId(id) {
-  const { issuerId, loyaltyProgram } = config;
-  return `${issuerId}.${id}.${loyaltyProgram}`;
+  const { issuerIdLoyalty, loyaltyProgram } = config;
+  return `${issuerIdLoyalty}.${id}.${loyaltyProgram}`;
 }
 
 /**
@@ -32,7 +32,7 @@ async function createLoyaltyObject(payloadBody, id, qrCodeMessage) {
   const client = new PassesClient();
 
   // read issuerId and loyalty program from config
-  const { issuerId, loyaltyProgram } = config;
+  const { issuerIdLoyalty, loyaltyProgram } = config;
   const receipts = payloadBody.receipts;
   const firstReceipt = receipts['1'];
   const secondReceipt = receipts['2'];
@@ -51,7 +51,7 @@ async function createLoyaltyObject(payloadBody, id, qrCodeMessage) {
   // Step 1: Construct the loyaltyObject.
   const loyaltyObject = {
     id: getLoyaltyId(id),
-    classId: `${issuerId}.${loyaltyProgram}`,
+    classId: `${issuerIdLoyalty}.${loyaltyProgram}`,
     accountName: `${firstReceiptDetails}`,
     accountId: `${secondReceiptDetails}`,
     state: 'active',

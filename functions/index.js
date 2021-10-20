@@ -18,6 +18,8 @@ const express = require('express');
 const functions = require('firebase-functions');
 const bodyParser = require('body-parser');
 const { loyaltyRoutes } = require('./loyalty');
+const { covidcardRoutes } = require('./covidcard');
+
 const cors = require('cors');
 
 const app = express();
@@ -29,6 +31,7 @@ app.use(bodyParser.json());
 
 const routers = {
   '/loyalty': loyaltyRoutes,
+  '/covidcard': covidcardRoutes
 };
 
 // register apis with an additional /api path
