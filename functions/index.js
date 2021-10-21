@@ -20,6 +20,7 @@ exports.googlesign = functions.https.onRequest((request, response) => {
     
         VERY IMPORTANT WARNING!!!!! VERY IMPORTANT WARNING!!!!! VERY IMPORTANT WARNING!!!!!
     */
+    console.log('begun /googlesign processing');
     cors(request, response, async (err) => {
 
         // Kick out anything that is not valid according to our CORS rules
