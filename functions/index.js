@@ -88,7 +88,7 @@ exports.googlesign = functions.https.onRequest((request, response) => {
                 sourceUri: {
                     // NOTE: The GPay APIs resist changing this icon - they throw an error when we try to use
                     // the Material shield icon we have used elsewhere, so we've left what works.
-                    uri: 'https://www.gstatic.com/images/icons/material/system_gm/2x/healing_black_48dp.png'
+                    uri: 'https://grassroots.vaccine-ontario.ca/logo-gpay.png'
                 }
             },
         };
