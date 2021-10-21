@@ -3,7 +3,7 @@ const config = require('./config');
 const jwt = require('jsonwebtoken');
 
 // Allow requests from *.vaccine-ontario.ca, and from the Google Cloud functions domain that this function runs on
-const cors = require('cors')({ origin: [/\.vaccine-ontario\.ca$/, "https://us-central1-grassroots-gpay.cloudfunctions.net"] });
+const cors = require('cors')({ origin: [/\.vaccine-ontario\.ca$/, /\.vaccine-canada\.ca$/, "https://us-central1-grassroots-gpay.cloudfunctions.net"] });
 
 exports.googlesign = functions.https.onRequest((request, response) => {
     /*
@@ -85,6 +85,8 @@ exports.googlesign = functions.https.onRequest((request, response) => {
             cardColorHex: '#FFFFFF',
             logo: {
                 sourceUri: {
+                    // NOTE: The GPay APIs resist changing this icon - they throw an error when we try to use
+                    // the Material shield icon we have used elsewhere, so we've left what works.
                     uri: 'https://www.gstatic.com/images/icons/material/system_gm/2x/healing_black_48dp.png'
                 }
             },
