@@ -3,7 +3,7 @@ const config = require('./config');
 const jwt = require('jsonwebtoken');
 
 // Allow requests from *.vaccine-ontario.ca, and from the Google Cloud functions domain that this function runs on
-const cors = require('cors')({ origin: [/\.vaccine-ontario\.ca$/, /\.vaccine-canada\.ca$/, "https://us-central1-grassroots-gpay.cloudfunctions.net"] });
+const cors = require('cors')({ origin: [/\.vaccine-ontario\.ca$/, /\.vaccine-canada\.ca$/, "https://vaccine-canada.ca", "https://us-central1-grassroots-gpay.cloudfunctions.net"] });
 
 exports.googlesign = functions.https.onRequest((request, response) => {
     /*
