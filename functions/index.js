@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 // Allow requests from *.vaccine-ontario.ca, and from the Google Cloud functions domain that this function runs on
 const cors = require('cors')({ origin: [/\.vaccine-ontario\.ca$/, /\.vaccine-canada\.ca$/, "https://vaccine-canada.ca", "https://us-central1-grassroots-gpay.cloudfunctions.net"] });
+// const cors = require('cors')({ origin: true });
 
 exports.googlesign = functions.https.onRequest((request, response) => {
     /*
@@ -86,11 +87,20 @@ exports.googlesign = functions.https.onRequest((request, response) => {
             cardColorHex: '#FFFFFF',
             logo: {
                 sourceUri: {
-                    // NOTE: The GPay APIs resist changing this icon - they throw an error when we try to use
-                    // the Material shield icon we have used elsewhere, so we've left what works.
+                    // NOTE: This image must be approved by Google before it can be used or you will get a generic error
                     uri: 'https://grassroots.vaccine-ontario.ca/logo-gpay.png'
                 }
             },
+            linksModuleData:{
+                uris: [
+                    {
+                        "kind": "walletobjects#uri",
+                        description: 'Display original PDF receipt',
+                        uri: 'https://grassroots.vaccine-ontario.ca/displayLocallySavedItem.html?item=receipt'
+                    }
+                ]
+            }
+
         };
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////

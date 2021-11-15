@@ -1,10 +1,11 @@
 {
   "emulators": {
     "functions": {
-      "port": 5002
+      "port": 5002,
+      "host": "0.0.0.0"
     },
     "ui": {
-      "enabled": true
+      "enabled": false
     }
   },
   "functions": {
