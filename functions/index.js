@@ -44,6 +44,8 @@ exports.googlesign = functions.https.onRequest((request, response) => {
         const passIssuerEmail = config.credentials.client_email;
         const passIssuerPrivateKey = config.credentials.private_key;
 
+        const referer = request.headers.referer;
+
         // The pass ID combines both the issuer and our unique pass ID
         const passId = `${passIssuerId}.${request.body.id}`;
 
@@ -96,7 +98,7 @@ exports.googlesign = functions.https.onRequest((request, response) => {
                     {
                         "kind": "walletobjects#uri",
                         description: 'Display original PDF receipt',
-                        uri: 'https://grassroots.vaccine-ontario.ca/displayLocallySavedItem.html?item=receipt'
+                        uri: `${referer}/displayLocallySavedItem.html?item=receipt`
                     }
                 ]
             }
