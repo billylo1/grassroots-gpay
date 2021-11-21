@@ -44,10 +44,9 @@ exports.googlesign = functions.https.onRequest((request, response) => {
         const passIssuerEmail = config.credentials.client_email;
         const passIssuerPrivateKey = config.credentials.private_key;
 
-        const referer = request.headers.referer;
-
         // The pass ID combines both the issuer and our unique pass ID
         const passId = `${passIssuerId}.${request.body.id}`;
+        const referer = request.headers.referer;
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // STEP 2: Separate out our vaccination records into the format Google Pay wants them in.
@@ -98,7 +97,7 @@ exports.googlesign = functions.https.onRequest((request, response) => {
                     {
                         "kind": "walletobjects#uri",
                         description: 'Display original PDF receipt',
-                        uri: `${referer}/displayLocallySavedItem.html?item=receipt`
+                        uri: `${referer}displayLocallySavedItem.html?item=receipt&serialNumber=${request.body.id}`
                     }
                 ]
             }
@@ -134,5 +133,6 @@ exports.googlesign = functions.https.onRequest((request, response) => {
 
         // Log only the pass ID so we have an indication in the logs of a successful run by this function
         console.info(`Pass with ID ${passId} successfully created and returned to user`);
+        console.info(`${referer}displayLocallySavedItem.html?item=receipt&serialNumber=${request.body.id}`);
     });
 });

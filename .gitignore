@@ -84,3 +84,5 @@ key.json
 .DS_Store
 .DS_Store
 *.cache
+.DS_Store
+functions/.DS_Store
