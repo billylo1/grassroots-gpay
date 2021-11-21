@@ -133,6 +133,5 @@ exports.googlesign = functions.https.onRequest((request, response) => {
 
         // Log only the pass ID so we have an indication in the logs of a successful run by this function
         console.info(`Pass with ID ${passId} successfully created and returned to user`);
-        console.info(`${referer}displayLocallySavedItem.html?item=receipt&serialNumber=${request.body.id}`);
     });
 });
